@@ -1,6 +1,7 @@
 // src/pages/ForgotPassword.jsx
 import { useState } from 'react';
 import { forgotPassword,resetPassword } from '../services/api.js';
+import RushMedia from '../assets/icons/RushMedia.png';
 import BackHeader from './BackHeader.jsx';
 import {toast} from 'react-hot-toast';
 export default function ForgotPassword() {
@@ -43,7 +44,7 @@ export default function ForgotPassword() {
   return (
     <div className="max-w-md mx-auto p-6 text-center">
       <BackHeader/>
-       <img className='w-full ' src="/src/assets/RushMedia.png" alt="" />
+       <img className='w-full ' src={RushMedia} alt="" />
        <div className='pt-6 font-medium text-2xl text-gray-700 font-display text-start font-stretch-105%'> Create new password</div>
        <div className='text-sm text-gray-500 text-start mb-6 font-stretch-105%' >Make password stronger for more security</div>
      <div className="relative w-full">

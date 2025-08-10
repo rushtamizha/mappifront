@@ -12,6 +12,8 @@ import {toast} from 'react-hot-toast';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode'; // ✅ Correct
 import BackHeader from './BackHeader.jsx';
+import RushMedia from '../assets/icons/RushMedia.png';
+import rushOtp from '../assets/icons/otp.png';
 
 
 
@@ -186,7 +188,7 @@ finally{
 ">
       {step === 'manual' && (
         <>
-        <img className='w-full' src="/src/assets/RushMedia.png" alt="" />
+        <img className='w-full' src={RushMedia} alt="" />
           <h2 className="text-2xl font-medium font-stretch-105% mt-4 text-gray-700">Create an account</h2>
           <div className='font-medium font-stretch-105% mb-4 text-gray-500'>All your links. One powerful hub.
 Turn traffic into income with ease.</div>
@@ -273,7 +275,7 @@ Turn traffic into income with ease.</div>
       {step === 'otp' && (
         <>
         <BackHeader/>
-        <img className='w-full mb-6' src="/src/assets/otp.png" alt="" />
+        <img className='w-full mb-6' src={rushOtp} alt="" />
         <div className="flex flex-col items-center justify-center ">
       <div className=" mb-4 w-full text-start text-2xl font-medium font-stretch-105% text-gray-700">Enter your verification code</div>
       <div className="flex gap-2 mb-4 w-full">
@@ -322,7 +324,7 @@ Turn traffic into income with ease.</div>
       {step === 'google-form' && (
         <>
         <BackHeader/>
-         <img className='w-full mb-6' src="/src/assets/otp.png" alt="" />
+         <img className='w-full mb-6' src={rushOtp} alt="" />
           <h2 className="text-xl my-4 text-gray-700 font-medium font-stretch-105%">Complete Registration</h2>
           <div class="relative w-full">
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

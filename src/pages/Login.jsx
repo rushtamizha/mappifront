@@ -5,6 +5,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import BackHeader from './BackHeader.jsx';
 import {toast} from 'react-hot-toast';
+import RushMedia from '../assets/icons/RushMedia.png';
 const Login = () => {
   const navigate = useNavigate()
   const [form, setForm] = useState({ gmail: '', password: '' });
@@ -47,7 +48,7 @@ const handleGoogleLogin = async (credentialResponse) => {
   return (
     <div className="p-4 max-w-md mx-auto">
       <BackHeader/>
-       <img className='w-full' src="/src/assets/RushMedia.png" alt="" />
+       <img className='w-full' src={RushMedia} alt="" />
       <h2 className="text-2xl mt-2 mb-4 text-gray-700 font-stretch-105%">Welcome back!</h2>
 
       <div class="relative w-full">
