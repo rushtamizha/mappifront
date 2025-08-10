@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@tailwind utilities;
+@theme {
+  --font-display: "poppins", "sans-serif"; 
+}
+*{
+  font-family: 'Anek Tamil';
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
