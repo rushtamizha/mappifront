@@ -5,37 +5,29 @@ import toast from 'react-hot-toast';
 import defaultLinkIcon from '../assets/icons/link.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-const SocialLinks = () => {
-  const navigate = useNavigate();
-  const [links, setLinks] = useState([]);
+import instagramIcon from '../assets/icons/insta.webp';
+import facebookIcon from '../assets/icons/facebook.png';
+import twitterIcon from '../assets/icons/x.jpg';
+import youtubeIcon from '../assets/icons/youtube.webp';
+import linkedinIcon from '../assets/icons/linkedin.png';
+import whatsappIcon from '../assets/icons/whatsapp.avif';
+import snapchatIcon from '../assets/icons/snapchat.jpg';
+import telegramIcon from '../assets/icons/telegram.webp';
+import xIcon from '../assets/icons/x.jpg';
+import tiktokIcon from '../assets/icons/tiktok.png';
 
-  useEffect(() => {
-    const fetchLinks = async () => {
-      try {
-        const res = await getSocialLinks();
-        setLinks(res.data);
-      } catch (error) {
-        console.error('Error fetching social links:', err);
-        toast.error(error.response.data.message)
-      }
-    };
-
-    fetchLinks();
-  }, []);
-
-  const getPlatformLogo = (platform) => {
-    const logos = {
-      instagram: '../assets/icons/insta.webp',
-      facebook: '../assets/icons/facebook.png',
-      twitter: '../assets/icons/x.jpg',
-      youtube: '../assets/icons/youtube.webp',
-      linkedin: '../assets/icons/linkedin.png',
-      whatsapp: '../assets/icons/whatsapp.avif',
-      snapchat: '../assets/icons/snapchat.jpg',
-      telegram: '../assets/icons/telegram.webp',
-      x: '../assets/icons/x.jpg',
-      tiktok: '../assets/icons/tiktok.png',
-    };
+export const icons = {
+  instagram: instagramIcon,
+  facebook: facebookIcon,
+  twitter: twitterIcon,
+  youtube: youtubeIcon,
+  linkedin: linkedinIcon,
+  whatsapp: whatsappIcon,
+  snapchat: snapchatIcon,
+  telegram: telegramIcon,
+  x: xIcon,
+  tiktok: tiktokIcon,
+};
 
     return logos[platform.toLowerCase()] || defaultLinkIcon;
   };
