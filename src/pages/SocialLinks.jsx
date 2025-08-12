@@ -28,8 +28,26 @@ export const icons = {
   x: xIcon,
   tiktok: tiktokIcon,
 };
+    const SocialLinks = () => {
+  const navigate = useNavigate();
+  const [links, setLinks] = useState([]);
 
-    return logos[platform.toLowerCase()] || defaultLinkIcon;
+  useEffect(() => {
+    const fetchLinks = async () => {
+      try {
+        const res = await getSocialLinks();
+        setLinks(res.data);
+      } catch (error) {
+        console.error('Error fetching social links:', error);
+        toast.error(error?.response?.data?.message || 'Failed to fetch social links');
+      }
+    };
+
+    fetchLinks();
+  }, []);
+
+  const getPlatformLogo = (platform) => {
+    return icons[platform?.toLowerCase()] || defaultLinkIcon;
   };
 
   return (
