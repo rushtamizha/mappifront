@@ -17,16 +17,16 @@ import xIcon from '../assets/icons/x.jpg';
 import tiktokIcon from '../assets/icons/tiktok.png';
 
 export const icons = {
-  instagram: instagram,
-  facebook: facebook,
-  twitter: twitter,
-  youtube: youtube,
-  linkedin: linkedin,
-  whatsapp: whatsapp,
-  snapchat: snapchat,
-  telegram: telegram,
-  x: x,
-  tiktok: tiktok,
+  instagram: instagramIcon,
+  facebook: facebookIcon,
+  twitter: twitterIcon,
+  youtube: youtubeIcon,
+  linkedin: linkedinIcon,
+  whatsapp: whatsappIcon,
+  snapchat: snapchatIcon,
+  telegram: telegramIcon,
+  x: xIcon,
+  tiktok: tiktokIcon,
 };
 
     return logos[platform.toLowerCase()] || defaultLinkIcon;
