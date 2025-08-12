@@ -65,7 +65,7 @@ const SortableItem = ({ link, onEdit,onDelete, onToggleVisibility }) => {
             <a href={link.url}>
               <img src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`} className="w-full  max-w-sm rounded px-4" />
               </a>
-            <span className="inline-block  text-red-600 medium-text  rounded ml-3 p-2 mt-2 capitalize font-stretch-105% ">{link.title} <p className=" text-gray-400 inline-block small-text font-stretch-105% ">Total Clicks: {link.clicks || 0}</p>
+            <span className="inline-block  text-red-600 medium-text  rounded ml-3 p-2 mt-2 capitalize font-stretch-105% ">{link.title} <p className=" text-gray-400 inline-block  font-stretch-105% ">Total Clicks: {link.clicks || 0}</p>
             <span className='text-green-600 bg-green-50 ml-2 px-3 rounded-full text-center align-middle font-stretch-105% text-lg'>{link.order}</span>
             </span>
             
@@ -79,12 +79,12 @@ const SortableItem = ({ link, onEdit,onDelete, onToggleVisibility }) => {
               {link.title && (
              <div className='flex gap-2 items-center'>
                <p className=" text-gray-700 font-display capitalize medium-text font-stretch-105% medium-text">{link.title}</p>
-               <span className='text-green-600 bg-green-50 px-3 rounded-full text-center align-middle font-stretch-105% small-text'>{link.order}</span>
+               <span className='text-green-600 bg-green-50 px-3 rounded-full text-center align-middle font-stretch-105% '>{link.order}</span>
              </div>
               
             )}
               {link.description && (
-              <p className=" text-gray-400 small-text">Total Clicks: {link.clicks || 0}</p>
+              <p className=" text-gray-400 ">Total Clicks: {link.clicks || 0}</p>
             )}
             </div>
           </div>
@@ -278,11 +278,11 @@ const handleLogoUpload = async (e) => {
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e3e3e3"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
         </div>
-        <input type="text" class="font-stretch-105%  border-2 border-gray-100 text-gray-500  rounded-lg  focus:outline-emerald-700 block w-full ps-10 p-3 small-text " placeholder="Search Link -or- Number"
+        <input type="text" class="font-stretch-105%  border-2 border-gray-100 text-gray-500  rounded-lg  focus:outline-emerald-700 block w-full ps-10 p-4 medium-text " placeholder="Search Link -or- Number"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)} />
     </div>
-    <button class="p-3 w-16 flex items-center justify-center  text-sm font-medium   border-2 border-emerald-600  rounded-lg   focus:outline-none ">
+    <button class="p-4 w-16 flex items-center justify-center  text-sm font-medium   border-2 border-emerald-600  rounded-lg   focus:outline-none ">
         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#047857"><path d="m422-232 207-248H469l29-227-185 267h139l-30 208ZM320-80l40-280H160l360-520h80l-40 320h240L400-80h-80Zm151-390Z"/></svg>
     </button>
     </div>
@@ -313,7 +313,7 @@ const handleLogoUpload = async (e) => {
 
       <div>
         <div className='big-text font-semibold text-gray-700 font-display capitalize font-stretch-105%'>{profile.username} <img className='h-3 inline' src={profile.plan=='pro' || profile.plan=='premium'?'/src/assets/verify.png':''} alt="" /></div>
-        <div className='small-text text-gray-500 capitalize font-stretch-105%'>{profile.bio}</div>
+        <div className=' text-gray-500 capitalize font-stretch-105%'>{profile.bio}</div>
       </div>
     </div>
     <SocialLinks/>
@@ -325,7 +325,7 @@ const handleLogoUpload = async (e) => {
         <h2 className="text medium-text text-gray-700 font-stretch-105%">{editing ? 'Edit Link' : 'All Links'}</h2>
         </div>
         {!editing && (
-          <button onClick={() =>{setAddloading(true); setTimeout(() => { setShowForm((prev) => !prev); setAddloading(false) }, 200) }} className="bg-emerald-700 text-white px-4 py-2 rounded-full small-text flex items-center justify-center disabled:opacity-50 font-stretch-105%" disabled={addloading}>
+          <button onClick={() =>{setAddloading(true); setTimeout(() => { setShowForm((prev) => !prev); setAddloading(false) }, 200) }} className="bg-emerald-700 text-white px-4 py-2 rounded-full  flex items-center justify-center disabled:opacity-50 font-stretch-105%" disabled={addloading}>
             {addloading && (
         <svg
           className="animate-spin h-5 w-5 mr-2 text-white"

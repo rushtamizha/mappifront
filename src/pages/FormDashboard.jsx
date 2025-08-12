@@ -72,7 +72,7 @@ const FormDashboard = () => {
         placeholder="Form Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="border-2 px-4 py-3 rounded w-full mb-2 border-gray-100 small-text text-gray-700 focus:outline-emerald-700 "
+        className="border-2 px-4 py-3 rounded w-full mb-2 border-gray-100  text-gray-700 focus:outline-emerald-700 "
       />
 
       <div className="space-y-2 mb-1">
@@ -140,14 +140,14 @@ const FormDashboard = () => {
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => navigate(`/responses/${form._id}`)}
-                  className=" text-[#DEA20B] rounded flex items-center justify-center gap-1 small-text"
+                  className=" text-[#DEA20B] rounded flex items-center justify-center gap-1 "
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#DEA20B"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
                   Responses
                 </button>
                 <button
                   onClick={() => handleDeleteForm(form._id)}
-                  className=" text-red-700 rounded flex items-center justify-center gap-1 small-text"
+                  className=" text-red-700 rounded flex items-center justify-center gap-1 "
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#BD0000"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
                   Delete

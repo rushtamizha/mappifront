@@ -25,16 +25,16 @@ const SocialLinks = () => {
 
   const getPlatformLogo = (platform) => {
     const logos = {
-      instagram: '/src/assets/icons/insta.webp',
-      facebook: '/src/assets/icons/facebook.png',
-      twitter: '/src/assets/icons/x.jpg',
-      youtube: '/src/assets/icons/youtube.webp',
-      linkedin: '/src/assets/icons/linkedin.png',
-      whatsapp: '/src/assets/icons/whatsapp.avif',
-      snapchat: '/src/assets/icons/snapchat.jpg',
-      telegram: '/src/assets/icons/telegram.webp',
-      x: '/src/assets/icons/x.jpg',
-      tiktok: '/src/assets/icons/tiktok.png',
+      instagram: '../assets/icons/insta.webp',
+      facebook: '../assets/icons/facebook.png',
+      twitter: '../assets/icons/x.jpg',
+      youtube: '../assets/icons/youtube.webp',
+      linkedin: '../assets/icons/linkedin.png',
+      whatsapp: '../assets/icons/whatsapp.avif',
+      snapchat: '../assets/icons/snapchat.jpg',
+      telegram: '../assets/icons/telegram.webp',
+      x: '../assets/icons/x.jpg',
+      tiktok: '../assets/icons/tiktok.png',
     };
 
     return logos[platform.toLowerCase()] || defaultLinkIcon;
@@ -60,7 +60,7 @@ const SocialLinks = () => {
                   src={getPlatformLogo(link.platform)}
                   alt={link.platform}
                 />
-                <span className='small-text text-gray-600'>{link.platform}</span>
+                <span className=' text-gray-600'>{link.platform}</span>
               </div>
             </SwiperSlide>
           ))}

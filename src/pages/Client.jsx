@@ -68,11 +68,11 @@ const videoId = getYouTubeVideoId(client.url);
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
         </div>
-        <input type="text" class="font-stretch-105%  border-2 border-gray-200 text-gray-500  rounded-lg  focus:outline-emerald-700 block w-full ps-10 p-3 small-text " placeholder="Search link -or- number"
+        <input type="text" class="font-stretch-105%  border-2 border-gray-200 text-gray-500  rounded-lg  focus:outline-emerald-700 block w-full ps-10 p-4  " placeholder="Search link -or- number"
           value={search}
           onChange={(e) => setSearch(e.target.value)} />
     </div>
-    <button class="p-3 w-16 flex items-center justify-center  text-sm font-medium   border-2 border-emerald-600  rounded-lg   focus:outline-none ">
+    <button class="p-4 w-16 flex items-center justify-center  text-sm font-medium   border-2 border-emerald-600  rounded-lg   focus:outline-none ">
         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#047857"><path d="m422-232 207-248H469l29-227-185 267h139l-30 208ZM320-80l40-280H160l360-520h80l-40 320h240L400-80h-80Zm151-390Z"/></svg>
     </button>
     </div>
