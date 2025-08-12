@@ -301,6 +301,14 @@ export const getClientForms = async (username) => {
   }
 }
 
+export const postLinkClick = async (id) => {
+  try {
+    return await API.post(`/links/click/${id}`)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const getUserNameLink = async(username) =>{
   return await API.get(`/links/username/${username}`)
 }

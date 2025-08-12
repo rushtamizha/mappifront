@@ -42,7 +42,7 @@ export default function ForgotPassword() {
     }
   }
   return (
-    <div className="max-w-md mx-auto p-6 text-center">
+    <div className="max-w-md mx-auto p-2 text-center">
       <BackHeader/>
        <img className='w-full ' src={RushMedia} alt="" />
        <div className='pt-6 font-medium text-2xl text-gray-700 font-display text-start font-stretch-105%'> Create new password</div>

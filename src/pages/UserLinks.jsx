@@ -7,6 +7,7 @@ import {
   DndContext,
   closestCenter,
   useSensor,
+  TouchSensor,
   useSensors,
   PointerSensor,
   KeyboardSensor,
@@ -23,7 +24,7 @@ import SocialLinks from './SocialLinks';
 import toast from 'react-hot-toast';
 const cloudName = import.meta.env.VITE_CLOUD_NAME;
 const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
-
+import avatar from '../assets/icons/avatar.avif'
 
 // ✅ Extract YouTube video ID
 const getYouTubeVideoId = (url) => {
@@ -52,9 +53,9 @@ const SortableItem = ({ link, onEdit,onDelete, onToggleVisibility }) => {
     <li
       ref={setNodeRef}
       style={style}
-      className="mb-2  bg-white p-4 rounded-xl  flex justify-between items-center border-2 border-gray-100 relative"
+      className="mb-2  bg-white p-3 rounded-xl  flex justify-between items-center border-2 border-gray-100 relative touch-none"
     >
-      <span {...listeners} {...attributes} className="cursor-grab pr-2 text text-gray-500">
+      <span {...listeners} {...attributes} className="cursor-grab pr-2 text text-gray-500" style={{ touchAction: 'none' }}>
         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="18px" fill="#808080"><path d="M360-160q-33 0-56.5-23.5T280-240q0-33 23.5-56.5T360-320q33 0 56.5 23.5T440-240q0 33-23.5 56.5T360-160Zm240 0q-33 0-56.5-23.5T520-240q0-33 23.5-56.5T600-320q33 0 56.5 23.5T680-240q0 33-23.5 56.5T600-160ZM360-400q-33 0-56.5-23.5T280-480q0-33 23.5-56.5T360-560q33 0 56.5 23.5T440-480q0 33-23.5 56.5T360-400Zm240 0q-33 0-56.5-23.5T520-480q0-33 23.5-56.5T600-560q33 0 56.5 23.5T680-480q0 33-23.5 56.5T600-400ZM360-640q-33 0-56.5-23.5T280-720q0-33 23.5-56.5T360-800q33 0 56.5 23.5T440-720q0 33-23.5 56.5T360-640Zm240 0q-33 0-56.5-23.5T520-720q0-33 23.5-56.5T600-800q33 0 56.5 23.5T680-720q0 33-23.5 56.5T600-640Z"/></svg>
       </span>
 
@@ -64,7 +65,7 @@ const SortableItem = ({ link, onEdit,onDelete, onToggleVisibility }) => {
             <a href={link.url}>
               <img src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`} className="w-full  max-w-sm rounded px-4" />
               </a>
-            <span className="inline-block  text-red-600 text- font-semibold  rounded ml-3 p-2 mt-2 capitalize font-stretch-105% ">{link.title} <p className=" text-gray-400 inline-block font-stretch-105%">Total Clicks: {link.clicks || 0}</p>
+            <span className="inline-block  text-red-600 medium-text  rounded ml-3 p-2 mt-2 capitalize font-stretch-105% ">{link.title} <p className=" text-gray-400 inline-block small-text font-stretch-105% ">Total Clicks: {link.clicks || 0}</p>
             <span className='text-green-600 bg-green-50 ml-2 px-3 rounded-full text-center align-middle font-stretch-105% text-lg'>{link.order}</span>
             </span>
             
@@ -72,18 +73,18 @@ const SortableItem = ({ link, onEdit,onDelete, onToggleVisibility }) => {
         ) : (
           <div className='flex gap-4 items-center'>
             {link.logo && (
-             <a href={link.url}> <img src={link.logo} alt="logo" className="w-full h-14 object-contain rounded shrink" /> </a>
+             <a href={link.url}> <img src={link.logo} alt="logo" className="w-full h-12 object-contain rounded shrink" /> </a>
             )}
             <div>
               {link.title && (
              <div className='flex gap-2 items-center'>
-               <p className=" text-gray-700 font-display capitalize text-xl font-stretch-105%">{link.title}</p>
-               <span className='text-green-600 bg-green-50 px-3 rounded-full text-center align-middle font-stretch-105%'>{link.order}</span>
+               <p className=" text-gray-700 font-display capitalize medium-text font-stretch-105% medium-text">{link.title}</p>
+               <span className='text-green-600 bg-green-50 px-3 rounded-full text-center align-middle font-stretch-105% small-text'>{link.order}</span>
              </div>
               
             )}
               {link.description && (
-              <p className=" text-gray-400 ">Total Clicks: {link.clicks || 0}</p>
+              <p className=" text-gray-400 small-text">Total Clicks: {link.clicks || 0}</p>
             )}
             </div>
           </div>
@@ -91,7 +92,7 @@ const SortableItem = ({ link, onEdit,onDelete, onToggleVisibility }) => {
         
       </div>
 
-      <label className="inline-flex items-center me-8 cursor-pointer">
+      <label className="inline-flex items-center me-6 cursor-pointer">
         <input
           type="checkbox"
           className="sr-only peer"
@@ -131,6 +132,7 @@ const UserLinks = () => {
   const [username, setUsername] = useState('');
   const [addloading,setAddloading] = useState(false)
   const sensors = useSensors(
+    useSensor(TouchSensor),
     useSensor(PointerSensor),
     useSensor(KeyboardSensor)
   );
@@ -271,38 +273,59 @@ const handleLogoUpload = async (e) => {
 
   return (
     <>
-    <div className='p-4 flex gap-2 max-w-2xl mx-auto  '>
+    <div className='p-2 flex gap-2 max-w-2xl mx-auto  '>
       <div class="relative w-full">
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+           <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e3e3e3"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
         </div>
-        <input type="text" class="font-stretch-105% bg-gray-50 border-2 border-gray-200 text-gray-500  rounded-lg focus:outline-emerald-700 block w-full ps-10 p-3.5 text-lg " placeholder="Search link -or- number"
+        <input type="text" class="font-stretch-105%  border-2 border-gray-100 text-gray-500  rounded-lg  focus:outline-emerald-700 block w-full ps-10 p-3 small-text " placeholder="Search Link -or- Number"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)} />
     </div>
-    <button class="p-2  text-sm font-medium text-lime-600 border-lime-600  rounded-lg  border-2  focus:outline-none ">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#65a30d"><path d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z"/></svg>
+    <button class="p-3 w-16 flex items-center justify-center  text-sm font-medium   border-2 border-emerald-600  rounded-lg   focus:outline-none ">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#047857"><path d="m422-232 207-248H469l29-227-185 267h139l-30 208ZM320-80l40-280H160l360-520h80l-40 320h240L400-80h-80Zm151-390Z"/></svg>
     </button>
     </div>
-    <div className='flex p-4 gap-4 items-center max-w-2xl mx-auto'>
+
+    {/*logo design */}
+    <div className='flex p-2 gap-3 items-center max-w-2xl mx-auto'>
+      <div className="relative w-18 h-18 rounded-full p-[2px] animate-borderColorChange">
+  <img
+    src={profile.profilePic || avatar}
+    alt=""
+    className="w-full h-full shadow-sm rounded-full object-cover"
+  />
+
+  <style>{`
+    @keyframes borderColorChange {
+      0% { border-color: #ff6b6b; }
+      25% { border-color: #f59e0b; }
+      50% { border-color: #60a5fa; }
+      75% { border-color: #7c3aed; }
+      100% { border-color: #06b6d4; }
+    }
+    .animate-borderColorChange {
+      border: 2px solid #ff6b6b;
+      animation: borderColorChange 6s linear infinite;
+    }
+  `}</style>
+</div>
+
       <div>
-        <img src={profile.profilePic } alt="" className='w-full h-20 shadow-sm rounded-full'/>
-      </div>
-      <div>
-        <div className='text-2xl text-gray-700 font-display capitalize font-stretch-105%'>{profile.username} <img className='h-3 inline' src={profile.plan=='pro' || profile.plan=='premium'?'/src/assets/verify.png':''} alt="" /></div>
-        <div className='text-xs text-gray-500 capitalize font-stretch-105%'>{profile.bio}</div>
+        <div className='big-text font-semibold text-gray-700 font-display capitalize font-stretch-105%'>{profile.username} <img className='h-3 inline' src={profile.plan=='pro' || profile.plan=='premium'?'/src/assets/verify.png':''} alt="" /></div>
+        <div className='small-text text-gray-500 capitalize font-stretch-105%'>{profile.bio}</div>
       </div>
     </div>
     <SocialLinks/>
     {/*social links*/ }
-    <div className="max-w-2xl mx-auto px-4 transition-all ease-in">
+    <div className="max-w-2xl mx-auto px-2 transition-all ease-in">
       <div className="flex justify-between items-center mb-4">
-        <div className='flex'>
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#364153"><path d="M120-280v-80h560v80H120Zm80-160v-80h560v80H200Zm80-160v-80h560v80H280Z"/></svg>
-        <h2 className="text-xl font-medium text-gray-700 font-stretch-105%">{editing ? 'Edit Link' : 'All Links'}</h2>
+        <div className='flex  gap-1'>
+          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#364153"><path d="M120-280v-80h560v80H120Zm80-160v-80h560v80H200Zm80-160v-80h560v80H280Z"/></svg>
+        <h2 className="text medium-text text-gray-700 font-stretch-105%">{editing ? 'Edit Link' : 'All Links'}</h2>
         </div>
         {!editing && (
-          <button onClick={() =>{setAddloading(true); setTimeout(() => { setShowForm((prev) => !prev); setAddloading(false) }, 200) }} className="bg-emerald-700 text-white px-6 py-3 rounded-full flex items-center justify-center disabled:opacity-50 font-stretch-105%" disabled={addloading}>
+          <button onClick={() =>{setAddloading(true); setTimeout(() => { setShowForm((prev) => !prev); setAddloading(false) }, 200) }} className="bg-emerald-700 text-white px-4 py-2 rounded-full small-text flex items-center justify-center disabled:opacity-50 font-stretch-105%" disabled={addloading}>
             {addloading && (
         <svg
           className="animate-spin h-5 w-5 mr-2 text-white"
@@ -330,22 +353,9 @@ const handleLogoUpload = async (e) => {
         )}
       </div>
 
-      <div className="flex justify-between items-center mb-4">
-        <button
-          onClick={() => {
-            const profileUrl = `${window.location.origin}/u/${username}`;
-            navigator.clipboard.writeText(profileUrl);
-            alert('Profile link copied to clipboard!');
-          }}
-          className="ml-2 bg-purple-600 text-white px-4 py-2 rounded hidden"
-        >
-          Copy Profile Link
-        </button>
-      </div>
-
       {showForm && (
-        <div className='h-screen w-screen  fixed top-0 left-0 backdrop-blur-2xl z-5'>
-        <form onSubmit={editing ? handleEditSubmit : handleAddLink} className="mb-6 flex w-sm sm:w-lg md:w-xl max-w-full flex-col gap-4 bg-white p-4 rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-sm" >
+        <div className='h-screen w-screen px-4  fixed top-0 left-0 backdrop-blur-2xl z-5'>
+        <form onSubmit={editing ? handleEditSubmit : handleAddLink} className="mb-6 flex w-85 sm:w-xl  flex-col gap-4 bg-white p-4 rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-sm" >
         {!videoId && (
             <>
             <div className='flex w-full justify-end  ' onClick={() =>{ setEditing(null);setNewLink({ title: '', url: '', description: '', logo: '' });  setShowForm((prev) => !prev);}}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff" className='bg-red-600 rounded'><path d="m336-280-56-56 144-144-144-143 56-56 144 144 143-144 56 56-144 143 144 144-56 56-143-144-144 144Z"/></svg></div>
@@ -428,7 +438,8 @@ const handleLogoUpload = async (e) => {
         </div>
       )}
 
-      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} modifiers={[restrictToVerticalAxis]}>
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} 
+      modifiers={[restrictToVerticalAxis]}>
         <SortableContext items={filteredLinks.map((link) => link._id)} strategy={verticalListSortingStrategy}>
           <ul className='mb-30 '>
             {filteredLinks.map((link) => (

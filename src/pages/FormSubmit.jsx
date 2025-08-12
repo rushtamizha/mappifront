@@ -138,7 +138,7 @@ if (emptyFields.length > 0) {
 
   return (
     <div className="max-w-xl mx-auto mt-5  p-6 bg-white rounded-xl shadow">
-      <h2 className="text-xl font-semibold capitalize">{form.title}</h2>
+      <h2 className="medium-text font-medium capitalize">{form.title}</h2>
       <form onSubmit={handleSubmit} className="space-y-3 my-2 capitalize">
         {form.fields.map((field, index) => (
           <div key={index}>

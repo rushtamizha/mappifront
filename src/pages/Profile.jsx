@@ -13,7 +13,7 @@ import toast from 'react-hot-toast';
 const cloudName = import.meta.env.VITE_CLOUD_NAME;
 const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
 const razorpay = import.meta.env.VITE_RAZORPAY_KEY
-
+import avatar from '../assets/icons/avatar.avif'
 const Profile = () => {
   const [user, setUser] = useState({});
   const [profilePic, setProfilePic] = useState('');
@@ -104,10 +104,10 @@ const Profile = () => {
       toast.success('Link added successfully')
     } catch (err) {
       toast.error('Failed to add link');
-    }finally{
-      fetchProfile()
-    }
-  };
+  } finally{
+    fetchProfile()
+  }
+}
 
   const handleUpdateLink = async (id, platform, url) => {
     try {
@@ -185,22 +185,58 @@ const HandleWithdrawMoney = async () => {
 };
 
   return (
-    <div className="max-w-xl mx-auto mb-30 font-stretch-105% p-6 bg-white rounded-xl animate-fadeIn duration-700 ">
-      <h1 className="text-2xl font-bold mb-6 "> Profile</h1>
-      <div className="flex flex-col items-center mb-6">
-        <label htmlFor="profilepic" className=' relative transition-transform duration-300 hover:scale-105 group'><img
-          src={profilePic || ''}
-          alt={profilePic || 'not available'}
-          className="w-28 h-28  object-cover rounded-full  border-4 border-transparent group-hover:border-emerald-300 transition duration-500 "
-         />
+    <div className="max-w-xl mx-auto mb-30 font-stretch-105% p-2 bg-white rounded-xl animate-fadeIn duration-700 ">
+      <div className="text-xl font-medium mb-3 flex items-center justify-between"> 
+        <div>Profile </div>
+        <div className="flex justify-between items-center ">
+  <button
+    onClick={() => {
+      const profileUrl = `${window.location.origin}/${user.username}`;
+      navigator.clipboard.writeText(profileUrl)
+        .then(() => toast.success('Profile link copied'))
+        .catch(() => toast.error('Failed to copy link.'));
+    }}
+    className="  small-text text-white rounded flex items-center "
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#00A2FF"><path d="M680-80q-50 0-85-35t-35-85q0-6 3-28L282-392q-16 15-37 23.5t-45 8.5q-50 0-85-35t-35-85q0-50 35-85t85-35q24 0 45 8.5t37 23.5l281-164q-2-7-2.5-13.5T560-760q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35q-24 0-45-8.5T598-672L317-508q2 7 2.5 13.5t.5 14.5q0 8-.5 14.5T317-452l281 164q16-15 37-23.5t45-8.5q50 0 85 35t35 85q0 50-35 85t-85 35Z"/></svg>
+  </button>
+</div>
+
+      </div>
+
+      <div className="flex gap-2  items-center mb-6">
+        <label htmlFor="profilepic" className=' relative transition-transform duration-300 hover:scale-105 group'><div className="relative w-18 h-18 rounded-full p-[2px] animate-borderColorChange">
+  <img
+    src={profilePic || avatar}
+    alt=""
+    className="w-full h-full shadow-sm rounded-full object-cover"
+  />
+
+  <style>{`
+    @keyframes borderColorChange {
+      0% { border-color: #ff6b6b; }
+      25% { border-color: #f59e0b; }
+      50% { border-color: #60a5fa; }
+      75% { border-color: #7c3aed; }
+      100% { border-color: #06b6d4; }
+    }
+    .animate-borderColorChange {
+      border: 2px solid #ff6b6b;
+      animation: borderColorChange 6s linear infinite;
+    }
+  `}</style>
+</div>
+
          <span className='absolute bottom-0 right-0 bg-white rounded-full p-2 group-hover:scale-110 transition duration-300 '>
-         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="oklch(0.44 0 0)"><path d="M480-260q75 0 127.5-52.5T660-440q0-75-52.5-127.5T480-620q-75 0-127.5 52.5T300-440q0 75 52.5 127.5T480-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM160-120q-33 0-56.5-23.5T80-200v-480q0-33 23.5-56.5T160-760h126l74-80h240l74 80h126q33 0 56.5 23.5T880-680v480q0 33-23.5 56.5T800-120H160Zm0-80h640v-480H638l-73-80H395l-73 80H160v480Zm320-240Z" /></svg>
+         <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#303030"><path d="M480-260q75 0 127.5-52.5T660-440q0-75-52.5-127.5T480-620q-75 0-127.5 52.5T300-440q0 75 52.5 127.5T480-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM160-120q-33 0-56.5-23.5T80-200v-480q0-33 23.5-56.5T160-760h126l74-80h240l74 80h126q33 0 56.5 23.5T880-680v480q0 33-23.5 56.5T800-120H160Zm0-80h640v-480H638l-73-80H395l-73 80H160v480Zm320-240Z" /></svg>
          </span>
          </label>
         <input type="file" accept="image/*" id='profilepic' onChange={handleImageUpload} className="mt-3 hidden" />
+        <div className='flex flex-col '>
+          <div><span className='big-text font-semibold text-gray-700'>{user.username}</span> <span className='capitalize bg-blue-300 px-2 rounded-2xl text-white'>{plan}</span></div>
+          <span className='smal-text text-gray-500'>{user.bio}</span>
+        </div>
       </div>
-      <div className='text-amber-600 w-full p-1 capitalize text-center text-xl'> Plan - {plan} </div>
-
       <div className="mb-4">
         <label className="block font-medium mb-1">Bio</label>
         <textarea
@@ -257,12 +293,12 @@ const HandleWithdrawMoney = async () => {
 </div>}
 
       <div className='flex gap-2 mb-5 transition-all'>
-        <button className={`bg-green-100 text-green-700 px-3 py-3 w-full rounded  ease-in-out ${Withdraw?'hidden':'block'}`} onClick={addMoney? HandleAddMoney : ()=> setAddMoney((prev)=> !prev) }>Add Money</button>
-        <button className={`bg-red-100 text-red-700 px-3 py-3 w-full rounded ${addMoney?'hidden':'block'}`} onClick={Withdraw? HandleWithdrawMoney : ()=> setWithdraw((prev)=> !prev) }>Withdraw Money</button>
+        <button className={`bg-green-50 flex justify-center gap-2 items-center  text-green-700 px-2 py-3 w-full rounded  ease-in-out ${Withdraw?'hidden':'block'}`} onClick={addMoney? HandleAddMoney : ()=> setAddMoney((prev)=> !prev) }> <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#00754A"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>Add Money</button>
+        <button className={`bg-red-50 text-red-500 flex items-center justify-center gap-2 px-2 py-3 w-full rounded ${addMoney?'hidden':'block'}`} onClick={Withdraw? HandleWithdrawMoney : ()=> setWithdraw((prev)=> !prev) }><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FF0000"><path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/></svg>Cash Out</button>
         { (addMoney || Withdraw) && <button onClick={()=>{ setAddMoney(false) ; setWithdraw(false) ; setAmount('')}}  className='bg-amber-300 w-1/3 rounded'>Cancel</button> }
       </div>
 
-      <h2 className="text-xl font-bold mb-3">Social Links</h2>
+      <h2 className="medium-text font-medium mb-3">Social Links</h2>
 
       {socialLinks.map((link, idx) => (
         <div key={link._id} className="flex items-center gap-2 mb-3">
@@ -276,7 +312,7 @@ const HandleWithdrawMoney = async () => {
                 )
               )
             }
-            className="p-2 border rounded w-1/3 border-gray-200 bg-gray-50"
+            className="p-2 border rounded w-1/3 border-gray-200"
           />
           <input
             type="text"
@@ -288,7 +324,7 @@ const HandleWithdrawMoney = async () => {
                 )
               )
             }
-            className="p-2 border border-gray-200 bg-gray-50 rounded w-2/3"
+            className="p-2 border border-gray-200  rounded w-2/3"
           />
           <button
             onClick={() => handleUpdateLink(link.id, link.platform, link.url)}

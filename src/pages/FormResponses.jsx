@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {getFormResponses, handleDeleteResponse} from '../services/api.js';
+import toast from 'react-hot-toast';
 
 export default function FormResponses() {
   const { formId } = useParams();
@@ -28,12 +29,10 @@ data.forEach((item) => {
   }, [formId]);
 
   const handleDelete = async (deleteId) => {
-  const confirmDelete = window.confirm('Are you sure you want to delete this response?');
-  if (!confirmDelete) return;
-
   try {
     await handleDeleteResponse(deleteId);
       setResponses(prev => prev.filter(r => r._id !== deleteId));
+      toast.success('Response Deleted')
   } catch (err) {
     console.error('Delete failed:', err);
     alert('Failed to delete the response');
@@ -67,19 +66,19 @@ data.forEach((item) => {
 
   return (
     <div className="max-w-2xl font-stretch-105% mx-auto  p-4 relative">
-      <h1 className="text-2xl font-semibold font-stretch-105% mb-4">Responses</h1>
+      <h1 className="text-xl font-medium font-stretch-105% mb-4">Responses</h1>
       {responses.length === 0 ? (
         <p className="text-gray-500 text-center">No response data available</p>
       ) : (
         responses.map((res, i) => (
   <div key={i} className="border border-gray-200 p-4 mb-3 rounded-lg">
-    <p className="text-sm text-gray-500 mb-2">
-      Submitted <span className='text-lime-600'>{new Date(res.createdAt).toLocaleString("en-IN")}</span>
+    <p className="text-sm text-gray-700 mb-2">
+      Submitted <span className='text-blue-600'>{new Date(res.createdAt).toLocaleString("en-IN")}</span>
     </p>
     {res.responses &&
       Object.entries(res.responses).map(([key, value], idx) => (
-        <div key={idx} className="mb-2 flex gap-2">
-          <span className="font-semibold capitalize">{key}</span>:
+        <div key={idx} className="mb-2 text-gray-700 flex gap-2">
+          <span className="font-medium capitalize">{key}</span>:
           {Array.isArray(value) && value.every((v) => typeof v === 'string' && v.startsWith('http')) ? (
             <div className="flex flex-wrap gap-2 mt-1">
               {value.map((url, i) => (

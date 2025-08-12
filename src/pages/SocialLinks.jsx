@@ -3,7 +3,8 @@ import { getSocialLinks } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import defaultLinkIcon from '../assets/icons/link.png';
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 const SocialLinks = () => {
   const navigate = useNavigate();
   const [links, setLinks] = useState([]);
@@ -44,20 +45,26 @@ const SocialLinks = () => {
       {links.length === 0 ? (
         <p className="text-gray-500 font-stretch-105%">No social links found.</p>
       ) : (
-        <ul className="flex gap-2 flex-wrap ">
-          {links.map((link,i) => (
-            <div
-              key={i}
-              className=" flex flex-wrap gap-2 max-w-2xl  cursor-pointer"
-              onClick={() => window.open(link.url, '_blank')}
-            >
-              <div className="border-2 rounded-4xl border-gray-100 flex py-2 px-3.5 gap-3 items-center hover:shadow-sm font-stretch-105%">
-                <img className="h-5 rounded" src={getPlatformLogo(link.platform)  }  />
-                <span className="text-gray-600 text-1xl capitalize">{link.platform}</span>
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={2}
+        >
+          {links.map((link, i) => (
+            <SwiperSlide key={i}>
+              <div
+                className="border-1 rounded-4xl border-gray-100 justify-center items-center flex py-2 px-3 gap-2  hover:shadow-sm cursor-pointer"
+                onClick={() => window.open(link.url, '_blank')}
+              >
+                <img
+                  className="h-5 w-5 rounded"
+                  src={getPlatformLogo(link.platform)}
+                  alt={link.platform}
+                />
+                <span className='small-text text-gray-600'>{link.platform}</span>
               </div>
-            </div>
+            </SwiperSlide>
           ))}
-        </ul>
+        </Swiper>
       )}
     </div>
   );
