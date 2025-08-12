@@ -25,7 +25,7 @@ import toast from 'react-hot-toast';
 const cloudName = import.meta.env.VITE_CLOUD_NAME;
 const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
 import avatar from '../assets/icons/avatar.avif'
-
+import verified from "../assets/icons/verify.png"
 // ✅ Extract YouTube video ID
 const getYouTubeVideoId = (url) => {
   try {
@@ -312,7 +312,7 @@ const handleLogoUpload = async (e) => {
 </div>
 
       <div>
-        <div className='big-text font-semibold text-gray-700 font-display capitalize font-stretch-105%'>{profile.username} <img className='h-3 inline' src={profile.plan=='pro' || profile.plan=='premium'?'/src/assets/verify.png':''} alt="" /></div>
+        <div className='big-text font-semibold text-gray-700 font-display capitalize font-stretch-105%'>{profile.username} <img className='h-3 inline' src={profile.plan=='pro' || profile.plan=='premium'?verified:''} alt="" /></div>
         <div className=' text-gray-500 capitalize font-stretch-105%'>{profile.bio}</div>
       </div>
     </div>
