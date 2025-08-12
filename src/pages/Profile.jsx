@@ -233,7 +233,7 @@ const HandleWithdrawMoney = async () => {
          </label>
         <input type="file" accept="image/*" id='profilepic' onChange={handleImageUpload} className="mt-3 hidden" />
         <div className='flex flex-col '>
-          <div><span className='big-text font-semibold text-gray-700'>{user.username}</span> <span className='capitalize bg-blue-300 px-2 rounded-2xl text-white'>{plan}</span></div>
+          <div><span className='big-text font-semibold text-gray-700 capitalize'>{user.username}</span> <span className='capitalize bg-blue-300 px-2 rounded-2xl text-white'>{plan}</span></div>
           <span className='smal-text text-gray-500'>{user.bio}</span>
         </div>
       </div>
