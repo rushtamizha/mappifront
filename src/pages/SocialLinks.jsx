@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getSocialLinks } from '../services/api';
+import { getMyProfile, getSocialLinks } from '../services/api';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import defaultLinkIcon from '../assets/icons/link.png';
@@ -28,14 +28,25 @@ export const icons = {
   x: xIcon,
   tiktok: tiktokIcon,
 };
-    const SocialLinks = () => {
+const SocialLinks = () => {
   const [links, setLinks] = useState([]);
   const { username } = useParams();
+  const [tempName, setTempName] = useState('');
+
   useEffect(() => {
     const fetchLinks = async () => {
       try {
-        const res = await getSocialLinks(username);
-        setLinks(res.data);
+        let finalUsername = username;
+
+        // If no username in params, get from profile
+        if (!finalUsername) {
+          const rest = await getMyProfile();
+          finalUsername = rest.data.username;
+          setTempName(finalUsername);
+        }
+
+        const res = await getSocialLinks(finalUsername); // finalUsername passed as param
+        setLinks(res.data || []);
       } catch (error) {
         console.error('Error fetching social links:', error);
         toast.error(error?.response?.data?.message || 'Failed to fetch social links');
@@ -43,7 +54,7 @@ export const icons = {
     };
 
     fetchLinks();
-  }, []);
+  }, [username]);
 
   const getPlatformLogo = (platform) => {
     return icons[platform?.toLowerCase()] || defaultLinkIcon;
@@ -80,4 +91,3 @@ export const icons = {
 };
 
 export default SocialLinks;
-
