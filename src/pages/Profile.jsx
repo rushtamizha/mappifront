@@ -8,14 +8,13 @@ import {
   getSocialLinks,
   createOrder, verifyPayment,userWithdraw
 } from '../services/api';
-import { useNavigate,useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 const cloudName = import.meta.env.VITE_CLOUD_NAME;
 const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
 const razorpay = import.meta.env.VITE_RAZORPAY_KEY
 import avatar from '../assets/icons/avatar.avif'
 const Profile = () => {
-  const{username} = useParams();
   const [user, setUser] = useState({});
   const [profilePic, setProfilePic] = useState('');
   const [bio, setBio] = useState('');
@@ -26,11 +25,13 @@ const Profile = () => {
   const [amount, setAmount] = useState('');
   const [method, setMethod] = useState('UPI');
   const [accountInfo, setAccountInfo] = useState('');
+  const {username} = useParams()
 
   const navigate = useNavigate()
 
   const [socialLinks, setSocialLinks] = useState([]);
   const [newPlatform, setNewPlatform] = useState('');
+  const [tempname,setTempname] = useState('')
   const [newUrl, setNewUrl] = useState('');
 
   useEffect(() => {
@@ -39,8 +40,15 @@ const Profile = () => {
 
   const fetchProfile = async () => {
     try {
+      let finalUsername = username;
+
       const res = await getMyProfile();
-      const socialmedia = await getSocialLinks(username)
+
+      if(!finalUsername){
+        finalUsername =res.data.username
+        setTempname(finalUsername)
+      }
+      const socialmedia = await getSocialLinks(finalUsername)
       setUser(res.data);
       setProfilePic(res.data.profilePic || '');
       setBio(res.data.bio || '');
@@ -234,7 +242,7 @@ const HandleWithdrawMoney = async () => {
          </label>
         <input type="file" accept="image/*" id='profilepic' onChange={handleImageUpload} className="mt-3 hidden" />
         <div className='flex flex-col '>
-          <div><span className='big-text font-semibold text-gray-700 capitalize'>{user.username}</span> <span className='capitalize bg-blue-300 px-2 rounded-2xl text-white'>{plan}</span></div>
+          <div><span className='big-text font-semibold text-gray-700'>{user.username}</span> <span className='capitalize bg-blue-300 px-2 rounded-2xl text-white'>{plan}</span></div>
           <span className='smal-text text-gray-500'>{user.bio}</span>
         </div>
       </div>
