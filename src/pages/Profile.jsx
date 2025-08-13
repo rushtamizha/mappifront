@@ -8,7 +8,7 @@ import {
   getSocialLinks,
   createOrder, verifyPayment,userWithdraw
 } from '../services/api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 const cloudName = import.meta.env.VITE_CLOUD_NAME;
 const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
