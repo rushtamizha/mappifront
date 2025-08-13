@@ -15,6 +15,7 @@ const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
 const razorpay = import.meta.env.VITE_RAZORPAY_KEY
 import avatar from '../assets/icons/avatar.avif'
 const Profile = () => {
+  const{username} = useParams();
   const [user, setUser] = useState({});
   const [profilePic, setProfilePic] = useState('');
   const [bio, setBio] = useState('');
@@ -39,7 +40,7 @@ const Profile = () => {
   const fetchProfile = async () => {
     try {
       const res = await getMyProfile();
-      const socialmedia = await getSocialLinks()
+      const socialmedia = await getSocialLinks(username)
       setUser(res.data);
       setProfilePic(res.data.profilePic || '');
       setBio(res.data.bio || '');
