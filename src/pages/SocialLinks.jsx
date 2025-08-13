@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getSocialLinks } from '../services/api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import defaultLinkIcon from '../assets/icons/link.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -29,13 +29,12 @@ export const icons = {
   tiktok: tiktokIcon,
 };
     const SocialLinks = () => {
-  const navigate = useNavigate();
   const [links, setLinks] = useState([]);
-
+  const { username } = useParams();
   useEffect(() => {
     const fetchLinks = async () => {
       try {
-        const res = await getSocialLinks();
+        const res = await getSocialLinks(username);
         setLinks(res.data);
       } catch (error) {
         console.error('Error fetching social links:', error);
@@ -81,3 +80,4 @@ export const icons = {
 };
 
 export default SocialLinks;
+
