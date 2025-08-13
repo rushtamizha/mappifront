@@ -150,12 +150,10 @@ export const getMyProfile = async () => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
-export const getSocialLinks =async () =>{
-  const token = localStorage.getItem('token');
-  return await API.get(`/social-links/`,{
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const getSocialLinks =async (username) =>{
+  return await API.get(`/social-links/${username}`)
 }
+
 export const getFormResponses= async (formId) =>{
   try {
     const token = localStorage.getItem('token');
