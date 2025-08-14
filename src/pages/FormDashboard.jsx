@@ -8,13 +8,17 @@ const FormDashboard = () => {
   const [title, setTitle] = useState('');
   const [fields, setFields] = useState([{ label: '', type: 'text' }]);
   const navigate = useNavigate();
+    const [loader,setLoader] = useState(false)
 
   const fetchForms = async () => {
     try {
+      setLoader(true)
       const res = await getMyForms();
       setForms(res.data || []);
     } catch (error) {
       toast.error('Error fetching forms');
+    }finally{
+      setLoader(false)
     }
   };
 
@@ -64,6 +68,17 @@ const FormDashboard = () => {
   };
 
   return (
+    loader ? (
+    <div className="loader h-full w-full"> 
+      <div className='flex justify-center items-center h-full fixed w-full '>
+        <div role="status">
+    <svg aria-hidden="true" className="inline w-8 h-8 text-gray-100 animate-spin  fill-emerald-700" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+    </svg>
+    </div>
+      </div>
+    </div> ) : ( <>
     <div className="max-w-2xl mx-auto  font-stretch-105% p-4 bg-white">
       <div className="big-text font-medium mb-2 flex item-center gap-2 text-[#0e5b37]"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0e5b37"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h168q13-36 43.5-58t68.5-22q38 0 68.5 22t43.5 58h168q33 0 56.5 23.5T840-760v268q-19-9-39-15.5t-41-9.5v-243H200v560h242q3 22 9.5 42t15.5 38H200Zm0-120v40-560 243-3 280Zm80-40h163q3-21 9.5-41t14.5-39H280v80Zm0-160h244q32-30 71.5-50t84.5-27v-3H280v80Zm0-160h400v-80H280v80Zm200-190q13 0 21.5-8.5T510-820q0-13-8.5-21.5T480-850q-13 0-21.5 8.5T450-820q0 13 8.5 21.5T480-790ZM720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Zm-20-80h40v-100h100v-40H740v-100h-40v100H600v40h100v100Z"/></svg>
         Create New Form</div>
@@ -157,8 +172,9 @@ const FormDashboard = () => {
           ))}
         </ul>
       )}
-    </div>
+    </div> </>)
   );
 };
 
 export default FormDashboard;
+
