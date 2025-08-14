@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { purchasePlan, getProfile } from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 const PlanPurchase = () => {
   const [plan, setPlan] = useState('');
   const navigate = useNavigate()
@@ -22,6 +23,7 @@ const PlanPurchase = () => {
       const { data } = await purchasePlan(plan);
       alert(data.message);
       fetchProfile(); // refresh wallet/plan
+      toast.success('Purchase success')
       navigate('/dashboard')
     } catch (err) {
       alert(err.response?.data?.error || 'Purchase failed');
