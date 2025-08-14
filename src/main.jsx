@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Toaster } from 'react-hot-toast';
-//import SplashCursor from './pages/SplashCursor.jsx';
+import SplashCursor from './pages/SplashCursor.jsx';
 const googleKey = import.meta.env.VITE_GOOGLE_KEY;
 
 createRoot(document.getElementById('root')).render(
@@ -31,7 +31,7 @@ createRoot(document.getElementById('root')).render(
       },
     },
   }}
-/> 
+/>       <SplashCursor/>
         <App />
       </BrowserRouter>
     </GoogleOAuthProvider>
