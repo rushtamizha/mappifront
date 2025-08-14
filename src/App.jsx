@@ -11,6 +11,10 @@ import Dashboard from './pages/Dashboard';
 import SocialLinks from './pages/SocialLinks';
 import Client from './pages/Client';
 import Subscription from './pages/Subscription';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsAndConditions from './pages/TermsAndConditions';
+import RefundPolicy from './pages/RefundPolicy';
+
 export default function App() {
   return (
     <Routes>
@@ -19,7 +23,15 @@ export default function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/SocialLinks" element={<SocialLinks />} />
       <Route path="/profileup" element={<Profile />} />
+
+
+      <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
+      <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+      <Route path="/RefundPolicy" element={<RefundPolicy />} />
+
+
       <Route path="/register" element={<Register />} />
+      <Route path="/" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/plan" element={<Subscription />} />
       <Route path="/add" element={<Login />} />
