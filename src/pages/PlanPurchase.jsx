@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { purchasePlan, getProfile } from '../services/api';
-
+import { useNavigate } from 'react-router-dom';
 const PlanPurchase = () => {
   const [plan, setPlan] = useState('');
+  const navigate = useNavigate()
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -21,6 +22,7 @@ const PlanPurchase = () => {
       const { data } = await purchasePlan(plan);
       alert(data.message);
       fetchProfile(); // refresh wallet/plan
+      navigate('/dashboard')
     } catch (err) {
       alert(err.response?.data?.error || 'Purchase failed');
     } finally {
