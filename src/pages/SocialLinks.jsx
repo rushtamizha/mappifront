@@ -57,7 +57,7 @@ const SocialLinks = () => {
   }, [username]);
 
   const getPlatformLogo = (platform) => {
-    return icons[platform?.toLowerCase()] || defaultLinkIcon;
+    return icons[platform.toLowerCase()] || defaultLinkIcon;
   };
 
   return (
