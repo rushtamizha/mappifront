@@ -270,9 +270,9 @@ Turn traffic into income with ease.</div>
             onError={() => toast.error('Google Auth failed')}
           />
           <div className='flex justify-between p-4'>
-            <span className='hover:text-emerald-700 transition-all ease-in hover:text-xl' onClick={()=>navigate('/TermsAndConditions')}>Terms&conditions</span>
-            <span className='hover:text-emerald-700 transition-all ease-in hover:text-xl' onClick={()=>navigate('/PrivacyPolicy')}>Privacy policy</span>
-            <span className='hover:text-emerald-700 transition-all ease-in hover:text-xl' onClick={()=>navigate('/RefundPolicy')}>Refund policy</span>
+            <span className='hover:text-emerald-700 small-text transition-all ease-in hover:medium-text' onClick={()=>navigate('/TermsAndConditions')}>Terms&conditions</span>
+            <span className='hover:text-emerald-700 small-text transition-all ease-in hover:medium-text' onClick={()=>navigate('/PrivacyPolicy')}>Privacy policy</span>
+            <span className='hover:text-emerald-700 small-text transition-all ease-in hover:medium-text' onClick={()=>navigate('/RefundPolicy')}>Refund policy</span>
           </div>
         </>
       )}
